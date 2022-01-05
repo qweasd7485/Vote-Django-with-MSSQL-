@@ -18,4 +18,5 @@
 ...>python -m venv <虛擬環境名稱>
 ```
 <p>下圖為建立[voteVenv]</p>
+
 ![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/VirtualenvCreate.PNG)
