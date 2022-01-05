@@ -7,5 +7,5 @@
 <p>2.Python 3.8.3</p>
 <p>3.作業系統環境詳細配置如圖</p>
 
-![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/OS環境配置圖.PNG)
+![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/OS環境配置圖.PNG)
 
