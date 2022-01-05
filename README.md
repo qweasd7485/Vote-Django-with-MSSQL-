@@ -9,3 +9,13 @@
 
 ![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/OS環境配置圖.PNG)
 
+
+## 前置部署作業 
+
+### 一、虛擬環境
+<p>(一般建於我的文件中)</p>
+``` bash
+...>python -m venv <虛擬環境名稱>
+```
+<p>下圖為建立[voteVenv]</p>
+![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/VirtualenvCreate.PNG)
