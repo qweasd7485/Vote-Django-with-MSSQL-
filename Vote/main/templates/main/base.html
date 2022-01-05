@@ -1,0 +1,33 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+	<title>
+	{% block title %}{% endblock %}
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	{% block head %}{% endblock %}
+	
+	<link rel="stylesheet" href="{% static 'main/css/message.css' %}" />
+	<link rel="stylesheet" href="{% static 'jquery-ui/jquery-ui.min.css' %}" />
+	{% block css %}{% endblock %}
+
+	<script type="text/javascript" src="{% static 'static_jquery/js/jquery.js' %}"></script>
+	<script src="{% static 'jquery-ui/external/jquery/jquery.js' %}"></script>
+	<script src="{% static 'jquery-ui/jquery-ui.min.js' %}"></script> 
+	{% block js %}{% endblock %}
+		
+	
+</head>
+<body background="{% static 'main/images/bg.jpg' %}">
+<h1 style="text-align: center">投票系統</h1>
+
+	{% include 'main/message.html' %} 
+
+	{% block content %}	
+    {% endblock %}
+
+
+</body>
+</html>

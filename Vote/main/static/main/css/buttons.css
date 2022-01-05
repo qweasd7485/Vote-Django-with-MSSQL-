@@ -1,0 +1,28 @@
+.buttons{	
+	height:60px;
+	width:140px;
+	line-height:60px;
+	font-size:medium;
+	font-weight: 700;
+	background-color:#334822;
+	background-image:linear-gradient(#678350 0%, #40572e 50%, #334822 50%, #202b15 100%);
+}
+.buttons:hover{	
+	color:#7a1b05;
+	font-weight: 700;
+	background-color:#ab7d25;
+	background-image:linear-gradient(#eeb924 0%, #e6a513 50%, #e0991d 50%, #d57a08 100%);
+}
+.btn{
+	line-height:20px;
+	font-size:medium;
+	font-weight: 700;
+	border-radius: 10px;
+	background-color:#334822;
+}
+.btn:hover{
+	color:#333;
+	font-weight: 700;
+	background-color:#ab7d25;
+	background-image:linear-gradient(#eeb924 0%, #e6a513 50%, #e0991d 50%, #d57a08 100%);
+}

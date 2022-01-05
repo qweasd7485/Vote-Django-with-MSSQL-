@@ -1,0 +1,35 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load admin_urls %}
+
+{% block title %}
+投票系統 | 首頁
+{% endblock %}
+
+{% block head %}
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:10px;
+      }
+  </style>
+{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/buttons.css' %}" />
+{% endblock %}
+
+{% block js %}{% endblock %}
+
+{% block content %}
+	<div style="text-align: center">
+		投票人：{{ user.fullName }}
+		<p><a href="{% url 'polls:index' %}" class="ui-button ui-widget ui-corner-all buttons" >開始投票</a></p>
+		{% if request.user.is_superuser %}
+			<p><a href="{% url 'admin:polls_question_add' %}" class="ui-button ui-widget ui-corner-all buttons">新增投票議題</a></p>
+			<p><a href="{% url 'account:register' %}" class="ui-button ui-widget ui-corner-all buttons">新增投票人員</a></p>
+		{% endif %}
+		<p><a href="{% url 'account:logout' %}" class="ui-button ui-widget ui-corner-all btn" >登出</a></p>
+	</div>
+	
+{% endblock %}

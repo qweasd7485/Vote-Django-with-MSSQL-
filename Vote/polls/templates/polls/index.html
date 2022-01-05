@@ -1,0 +1,118 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load polls_tags %}
+
+{% block title %}
+投票系統 | 選擇題目
+{% endblock %}
+
+{% block head %}
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:10px;
+      }
+  </style>
+{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/buttons.css' %}" />
+{% endblock %}
+
+{% block js %}{% endblock %}
+
+{% block content %}
+	
+	<center>
+		<h1>~請選擇投票議題~</h1>
+		投票人：{{ user.fullName }}
+		<br />
+		
+		{% if latest_question_list %}
+			<table width="50%" align="center" bgColor="#3399cc" border="0" cellSpacing="1" cellPadding="2">
+				<tr bgColor="#99ccee" valign="bottom">
+            		<th>項次</th>
+            		<th align="left">主題</th>
+            		<th>每次可投票數(需全數投滿)</th>
+            		<th>是否可多次投票</th>	
+            		<th>是否已經投票</th>
+            		<th>投票結果</th>
+        		</tr>
+        		
+        		
+				{% for question in latest_question_list %}
+					{% if forloop.counter|divisibleby:2 %}
+						<tbody bgColor="#eaf4ff">
+        					<tr>
+								<td align="center">{{ question.id }}</td>
+								
+								{% voted_query question.id user.id as voted %}
+								{% if question.revoteable == False and voted >= "1" %}
+									<td>{{ question.question_text }}</td>
+								{% else %}
+									<td><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></td>
+								{% endif %}
+								         						
+        						<td>{{ question.ballot }}</td>
+        						        						
+        						{% if question.revoteable == False %}
+        							<td>否</td>
+        						{% else %}
+        							<td>是</td>        						
+        						{% endif %}        						
+        						
+        						{% if voted == "1" %}
+        							<td>是</td>
+        						{% else %}
+        							<td>否</td>
+        						{% endif %}
+        						
+        					
+    					   					
+					{% else %}
+						<tbody bgColor="#f4faff">
+        					<tr>
+            					<td align="center">{{ question.id }}</td>
+            					
+            					
+								{% voted_query question.id user.id as voted %}
+								{% if question.revoteable == False and voted >= "1" %}
+									<td>{{ question.question_text }}</td>
+								{% else %}
+									<td><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></td>
+								{% endif %}
+        						            					
+        						<td>{{ question.ballot }}</td> 
+        						
+        						{% if question.revoteable == False %}
+        							<td>否</td>
+        						{% else%}
+        							<td>是</td>
+        						{% endif %}
+        										
+        						{% if voted == "1" %}
+        							<td>是</td>
+        						{% else %}
+        							<td>否</td>
+        						{% endif %}
+        					
+    					
+    				{% endif %}    				
+    						<td><a href="{% url 'polls:results' question.id %}">查看結果</a></td>
+    					</tr>
+    				</tbody>
+				{% endfor %}
+			</table>
+			
+		{% else %}
+			<p>No polls are available.</p>
+		{% endif %}
+		
+		<a href="{% url 'main:main' %}" class="ui-button ui-widget ui-corner-all buttons" >返回首頁</a> <!-- position:relative; left:250%; -->
+				
+	</center>
+	
+
+	
+
+{% endblock %}

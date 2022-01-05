@@ -1,0 +1,7 @@
+{% if messages %}
+  {% for message in messages %}
+    {% if forloop.last %}
+      <p {% if message.tags %} class="{{ message.tags }}" style="text-align: center" {% endif %}>{{message}}</p>
+    {% endif%}
+  {% endfor %}
+{% endif %}

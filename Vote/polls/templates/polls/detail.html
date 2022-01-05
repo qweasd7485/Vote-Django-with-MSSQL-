@@ -1,0 +1,91 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}
+投票系統 | 投票中
+{% endblock %}
+
+{% block head %}
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:10px;
+      }
+  </style>
+{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/buttons.css' %}" />
+{% endblock %}
+
+{% block js %}
+
+	<script>
+	function checkBallot(){
+		var ballot = document.getElementById('ballot').value;
+		var tags = document.getElementsByTagName('input');
+		var checkednumber = 0;
+		for (var i = 0; i < tags.length; i++) {
+			if (tags[i].name.substr(0,6)=="choice") {
+				if (tags[i].checked) {
+					checkednumber += 1;
+				}
+		    }
+		}
+		
+		if(checkednumber > ballot){   //防止使用者頭超過可投票數
+			alert("已超過單次可投票數！");
+			return false;
+		}else if(checkednumber > 0 & checkednumber < ballot){  //防止使用者未投滿可投票數
+			alert("並未投票滿可投票數！");
+			return false;
+		}else if(checkednumber <= 0){ //防止使用者未投任何票
+			alert("並未投票！");
+			return false;
+		}
+		return true;
+	}
+	
+	</script>
+
+{% endblock %}
+
+{% block content %}
+	<center>
+		<h1>{{ question.question_text }}</h1>
+	
+		{% if error_message %}<p style="color:red"><strong>{{ error_message }}</strong></p>{% endif %}
+	
+	
+		{% if question.ballot == 1%} <!-- 可投票數為1 -->
+		
+			<form action="{% url 'polls:vote' question.id %}" method="post">
+				{% csrf_token %}
+				{% for choice in question.choice_set.all %}
+    				<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    				<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+				{% endfor %}
+				<input class="btn" type="submit" value="Vote" />
+				<a href="{% url 'polls:index' %}" class="ui-button ui-widget ui-corner-all buttons">返回選擇題目</a> <!-- position:relative; left:250%; -->
+			</form>
+			
+		{% elif question.ballot > 1 %} <!-- 可投票數大於1 -->
+			<b style="color:red;font-size:24px" >※注：需投滿{{ question.ballot }}票，且請投不同選項!</b>
+			<form action="{% url 'polls:vote' question.id %}" method="post" onsubmit="return checkBallot()">
+				{% csrf_token %}
+				{% for choice in question.choice_set.all %}
+    				<input type="checkbox" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    				<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+				{% endfor %}
+				<input class="btn" type="submit" value="Vote" />
+				<input type="textbox" name="ballot" id="ballot" value="{{ question.ballot }}" style="display:none" readonly />
+				<a href="{% url 'polls:index' %}" class="ui-button ui-widget ui-corner-all buttons">返回選擇題目</a> <!-- position:relative; left:250%; -->
+			</form>
+			
+		{% endif %}
+	</center>
+{% endblock %}
+
+
+
+
