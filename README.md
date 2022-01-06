@@ -32,15 +32,15 @@
 
 ...>activate
 
-![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/VenvEntry.PNG)
+![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/VenvEntry.png)
 
 <p>接續命令提示字元會自己刷新並在路徑前面顯示(虛擬環境名稱)</p>
 
-![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/VirtalenvEntrySuccess.PNG)
+![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/VirtalenvEntrySuccess.png)
 
 <p>3.虛擬環境中需安裝的套件與版本</p>
 
 (venv)...>pip freeze
 
-![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/Venvpipfreeze.PNG)
+![image](https://github.com/qweasd7485/VoteMSSQL/blob/master/Pictures/Venvpipfreeze.png)
 
